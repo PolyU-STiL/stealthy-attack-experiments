@@ -53,4 +53,4 @@ CiteSeer
 | **IGAttack** |  |  |  |
 | **SGAttack** |  |  |  |
 | **GR-BCD** |  |  |  |
-| **CLGA** |  |  |  |
+| **CLGA** | 0.6368 |  |  |
