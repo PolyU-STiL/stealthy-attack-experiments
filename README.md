@@ -4,7 +4,7 @@ In detail, the following methods are currently implemented:
 
 ## Untargetted Attack
 
-| Methods          | Descriptions                                                                                                                                           | Examples                                                                                                      |
+| Method          | Description                                                                                                                                           | Example                                                                                                      |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
 | **RandomAttack** | A simple random method that chooses edges to flip randomly.                                                                                            | [[**Example**]](https://github.com/EdisonLeeeee/GreatX/blob/master/examples/attack/targeted/random_attack.py) |
 | **DICEAttack**   | *Waniek et al.* [Hiding Individuals and Communities in a Social Network](https://arxiv.org/abs/1608.00375), *Nature Human Behavior'16*                 | [[**Example**]](https://github.com/EdisonLeeeee/GreatX/blob/master/examples/attack/targeted/dice_attack.py)   |
@@ -18,6 +18,39 @@ In detail, the following methods are currently implemented:
 
 ## Detailed implementation process
 
-### 
+### CLGA
 
 
+
+## Cleaned Graph & Poisoned Graph
+
+Stored in the folder "poisoned_adj".
+
+## Accuracy
+
+Cora
+| Method | 1% | 5% | 10% |
+| ---------------- | -- | -- | --- |
+| **RandomAttack** |  |  |  |
+| **DICEAttack** |  |  |  |
+| **Nettack** |  |  |  |
+| **FGAttack** |  |  |  |
+| **GFAttack** |  |  |  |
+| **IGAttack** |  |  |  |
+| **SGAttack** |  |  |  |
+| **GR-BCD** |  |  |  |
+| **CLGA** | 0.7664 | 0.7148 | 0.6976 |
+
+
+CiteSeer
+| Method | 1% | 5% | 10% |
+| ---------------- | -- | -- | --- |
+| **RandomAttack** |  |  |  |
+| **DICEAttack** |  |  |  |
+| **Nettack** |  |  |  |
+| **FGAttack** |  |  |  |
+| **GFAttack** |  |  |  |
+| **IGAttack** |  |  |  |
+| **SGAttack** |  |  |  |
+| **GR-BCD** |  |  |  |
+| **CLGA** |  |  |  |
