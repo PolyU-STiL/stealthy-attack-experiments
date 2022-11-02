@@ -21,36 +21,38 @@ In detail, the following methods are currently implemented:
 ### CLGA
 
 
+## Source Code
+
+Stored in the folder "src".
+
 
 ## Cleaned Graph & Poisoned Graph
 
-Stored in the folder "poisoned_adj".
+Stored in the folder "poisoned_graph".
 
 ## Accuracy
 
 Cora
-| Method | 1% | 5% | 10% |
-| ---------------- | -- | -- | --- |
-| **RandomAttack** |  |  |  |
-| **DICEAttack** |  |  |  |
-| **Nettack** |  |  |  |
-| **FGAttack** |  |  |  |
-| **GFAttack** |  |  |  |
-| **IGAttack** |  |  |  |
-| **SGAttack** |  |  |  |
-| **GR-BCD** |  |  |  |
-| **CLGA** | 0.7664 | 0.7148 | 0.6976 |
+| Method | 1% | 5% | 10% | 15% | 20% |
+| ---------------- | -- | -- | --- | --- | --- |
+| **RandomAttack** |  |  |  |  |  |
+| **DICEAttack** |  |  |  |  |  |
+| **Metattack** |  |  |  |  |  |
+| **PGD** |  |  |  |  |  |
+| **MinMax** |  |  |  |  |  |
+| **NodeEmbeddingAttack** |  |  |  |  |  |
+| **GR-BCD** |  |  |  |  |  |
+| **CLGA** | 0.7664 | 0.7148 | 0.6976 |  |  |
 
 
 CiteSeer
-| Method | 1% | 5% | 10% |
-| ---------------- | -- | -- | --- |
-| **RandomAttack** |  |  |  |
-| **DICEAttack** |  |  |  |
-| **Nettack** |  |  |  |
-| **FGAttack** |  |  |  |
-| **GFAttack** |  |  |  |
-| **IGAttack** |  |  |  |
-| **SGAttack** |  |  |  |
-| **GR-BCD** |  |  |  |
-| **CLGA** | 0.6368 | 0.6122 |  |
+| Method | 1% | 5% | 10% | 15% | 20% |
+| ---------------- | -- | -- | --- | --- | --- |
+| **RandomAttack** |  |  |  |  |  |
+| **DICEAttack** |  |  |  |  |  |
+| **Metattack** |  |  |  |  |  |
+| **PGD** |  |  |  |  |  |
+| **MinMax** |  |  |  |  |  |
+| **NodeEmbeddingAttack** |  |  |  |  |  |
+| **GR-BCD** |  |  |  |  |  |
+| **CLGA** | 0.6368 | 0.6122 | 0.5898 |  |  |
