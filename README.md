@@ -11,7 +11,7 @@ In detail, the following methods are currently implemented:
 | **Metattack** | *Zügner et al.* [Adversarial Attacks on Graph Neural Networks via Meta Learning](https://arxiv.org/abs/1902.08412), *ICLR'19* | [[**Example**]](https://github.com/EdisonLeeeee/GreatX/blob/master/examples/attack/untargeted/metattack.py) |
 | **PGD** | *Xu et al.* [Topology Attack and Defense for Graph Neural Networks: An Optimization Perspective](https://arxiv.org/abs/1906.04214), *IJCAI'19* | [[**Example**]](https://github.com/EdisonLeeeee/GreatX/blob/master/examples/attack/untargeted/pgd_attack.py) |
 | **Minmax** | *Xu et al.* [Topology Attack and Defense for Graph Neural Networks: An Optimization Perspective](https://arxiv.org/abs/1906.04214), *IJCAI'19* | [[**Example**]](https://github.com/EdisonLeeeee/GreatX/blob/master/examples/attack/untargeted/minmax_attack.py) |
-| **NodeEmbeddingAttack** | *Bojchevski eet al.* [Adversarial Attacks on Node Embeddings via Graph Poisoning](https://arxiv.org/abs/1809.01093), *ICML'19* | [[**Example**]]() |
+| **NodeEmbeddingAttack** | *Bojchevski et al.* [Adversarial Attacks on Node Embeddings via Graph Poisoning](https://arxiv.org/abs/1809.01093), *ICML'19* | [[**Example**]]() |
 | **GR-BCD** | *Geisler et al.* [ Robustness of graph neural networks at scale](https://github.com/sigeisler/robustness_of_gnns_at_scale), *NIPS'21* | [[**Example**]](https://github.com/rinnesz/clga) |
 | **CLGA** | *Zhang et al.* [ Unsupervised graph poisoning attack via contrastive loss back-propagation](https://dl.acm.org/doi/abs/10.1145/3485447.3512179), *WWW'22* | [[**Example**]](https://github.com/rinnesz/clga) |
 
