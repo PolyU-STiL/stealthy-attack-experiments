@@ -57,6 +57,4 @@ CiteSeer
 | **CLGA** | 0.6230 | 0.5890 | 0.5630 | 0.5420 | 0.4760 |
 
 ## Metrics evaluation
-`cd src
-
-python metrics.py ----dataset Cora --attack CLGA --budget 1 --metric edge_homophily`
+`cd src <br> python metrics.py ----dataset Cora --attack CLGA --budget 1 --metric edge_homophily`
