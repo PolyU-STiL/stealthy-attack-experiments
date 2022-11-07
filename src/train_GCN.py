@@ -41,7 +41,10 @@ if args.perturb:
 model = GCN(nfeat=features.shape[1], nhid=16, nclass=labels.max()+1, device=device)
 model = model.to(device)
 
-model.fit(features, perturbed_adj, labels, idx_train, idx_val, train_iters=200, verbose=True)
+if args.perturb:
+    model.fit(features, perturbed_adj, labels, idx_train, idx_val, train_iters=200, verbose=True)
+else:
+    model.fit(features, adj, labels, idx_train, idx_val, train_iters=200, verbose=True)
 
 model.eval()
 # You can use the inner function of model to test
