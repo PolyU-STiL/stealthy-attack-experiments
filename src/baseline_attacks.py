@@ -70,7 +70,7 @@ if args.method == 'nodeembeddingattack' and contains_isolated_nodes(dataset.data
     adj = csr_matrix(edge_adj)
     model = attack_model(args.method, adj, None, None, device)
     modified_adj = torch.Tensor(model.modified_adj.todense())
-    edge_index = modified_adj.nonzero().T
+    edge_index = modified_adj.nonzero(as_tuple=False).T
     restored_edge_index = restore_isolated_ndoes(edge_index, mapping)
     edge_sp_adj = torch.sparse.FloatTensor(restored_edge_index.to(device),
                                            torch.ones(restored_edge_index.shape[1]).to(device),
