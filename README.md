@@ -55,3 +55,11 @@ CiteSeer
 | **NodeEmbeddingAttack** | 0.6630 | 0.6870 | 0.6410 | 0.6370 | 0.6060 |
 | **GR-BCD** |  |  |  |  |  |
 | **CLGA** | 0.6230 | 0.5890 | 0.5630 | 0.5420 | 0.4760 |
+
+## Metrics evaluation
+to evaluate edege homophily on Cora attacked by CLGA with budget 1%:
+```bash
+cd src
+python metrics.py ----dataset Cora --attack CLGA --budget 1 --metric edge_homophily
+```
+
