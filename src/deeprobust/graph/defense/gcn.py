@@ -169,9 +169,9 @@ class GCN(nn.Module):
         if type(adj) is not torch.Tensor:
             features, adj, labels = utils.to_tensor(features, adj, labels, device=self.device)
         else:
-            features = features.to(self.device)
+            features = torch.tensor(features).to(self.device)
             adj = adj.to(self.device)
-            labels = labels.to(self.device)
+            labels = torch.tensor(labels).to(self.device)
 
         if normalize:
             if utils.is_sparse_tensor(adj):
