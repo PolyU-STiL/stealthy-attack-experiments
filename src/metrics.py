@@ -19,9 +19,7 @@ def arg_parse():
 def get_matrix(args):
 
     matrix_dir_path = '../poisoned_graph/experiment{}/{}_{}_0.{}0000_adj.pkl'.format(args.exp,  args.dataset, args.attack, args.budget)  # ../poisoned_graph/experiment1/Cora_CLGA_0.010000_adj.pkl
-    for root, dirs, files in os.walk(matrix_dir_path):
-        file_name = files[0]
-    f = open(os.path.join(matrix_dir_path, file_name), 'rb')
+    f = open(matrix_dir_path, 'rb')
     matrix = np.array(pickle.load(f), dtype=int)
     return matrix
 
