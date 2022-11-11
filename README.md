@@ -24,7 +24,6 @@ In detail, the following methods are currently implemented:
 
 Stored in the folder "src".
 
-
 ## Cleaned Graph & Poisoned Graph
 
 Stored in the folder "poisoned_graph".
@@ -43,7 +42,6 @@ Cora
 | **GR-BCD** | 0.8130 |  |  |  |  |  |
 | **CLGA** | 0.8130 | 0.8090 | 0.7980 | 0.7830 | 0.7700 | 0.7620 |
 
-
 CiteSeer
 | Method | 0% | 1% | 5% | 10% | 15% | 20% |
 | ---------------- | -- | -- | -- | --- | --- | --- |
@@ -53,7 +51,7 @@ CiteSeer
 | **PGD** | 0.7080 | 0.7060 | 0.6912 | 0.6434 | 0.4994 | 0.4654 |
 | **MinMax** | 0.7080 | 0.7036 | 0.6990 | 0.5954 | 0.4654 | 0.3810 |
 | **NodeEmbeddingAttack** | 0.7080 | 0.6998 | 0.7020 | 0.6946 | 0.6922 | 0.6950 |
-| **GR-BCD** |  |  |  |  |  |
+| **GR-BCD** | 0.7080 |  |  |  |  |
 | **CLGA** | 0.7080 | 0.6230 | 0.5890 | 0.5630 | 0.5420 | 0.4760 |
 
 ## Metrics evaluation
