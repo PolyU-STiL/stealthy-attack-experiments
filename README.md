@@ -2,7 +2,7 @@
 
 In detail, the following methods are currently implemented:
 
-## Untargetted Attack
+## Untargeted Attack
 
 | Method | Description | Example |
 | ------ | ----------- | ------- |
