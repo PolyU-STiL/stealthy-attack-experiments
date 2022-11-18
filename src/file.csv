@@ -1436,3 +1436,7 @@ exps,dataSets,attacks,budgets,metrics,result
 5,Cora,dice,05,balanced_homophily,0.34120922736263504
 5,Cora,dice,10,edge_homophily,0.7599924228073499
 5,Cora,dice,10,node_homophily,0.7681545610003715
+5,Cora,dice,10,class_homophily,0.7075184979933367
+5,Cora,dice,10,adjusted_homophily,0.32262778217111737
+5,Cora,dice,10,balanced_homophily,0.32451109879600193
+5,Cora,dice,15,edge_homophily,0.7348986934292747
