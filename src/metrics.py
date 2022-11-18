@@ -1,12 +1,19 @@
+import io
+
 import numpy as np
 import pickle
 import argparse
 import os
 import sys
 
+import torch
+
 
 def arg_parse():
-    parser = argparse.ArgumentParser(description=globals()['__doc__'])
+    parser = argparse.ArgumentParser(
+        prog='ProgramName',
+        description='What the program does',
+        epilog='Text at the bottom of help')
     parser.add_argument('--exp', type=str, default='1', help='experiment folder')
     parser.add_argument('--dataset', type=str, default='Cora', help='Cora or CiteSeer')
     parser.add_argument('--attack', type=str, default='CLGA', help='attack algorithm')
@@ -15,21 +22,54 @@ def arg_parse():
     args = parser.parse_args()
     return args
 
+class CPU_Unpickler(pickle.Unpickler):
+    def find_class(self, module, name):
+        if module == 'torch.storage' and name == '_load_from_bytes':
+            return lambda b: torch.load(io.BytesIO(b), map_location='cpu')
+        else: return super().find_class(module, name)
+
 
 def get_matrix(args):
+    matrix_path = '../poisoned_graph/experiment{}/{}_{}_0.{}0000_adj.pkl'.format(args.exp, args.dataset,
+                                                                                 args.attack,
+                                                                                 args.budget)  # ../poisoned_graph/experiment1/Cora_CLGA_0.010000_adj.pkl
+    exist = os.path.exists(matrix_path)
+    if exist:
+        f = open(matrix_path, 'rb')
+        # file = torch.load(matrix_path, map_location=torch.device('cpu'))
+        matrix = CPU_Unpickler(f).load()
 
-    matrix_dir_path = '../poisoned_graph/experiment{}/{}_{}_0.{}0000_adj.pkl'.format(args.exp,  args.dataset, args.attack, args.budget)  # ../poisoned_graph/experiment1/Cora_CLGA_0.010000_adj.pkl
-    f = open(matrix_dir_path, 'rb')
-    matrix = np.array(pickle.load(f), dtype=int)
-    return matrix
+        return np.array(matrix)
+        # f = open(matrix_path, 'rb')
+        # file = pickle.load(f)
+        # matrix = np.array(file, dtype=np.int64)
+        # return matrix
+
+
+        # if (args.attack=='metattack') | (args.attack=='minmax') | (args.attack=='pgd'):
+        #     f = open(matrix_path, 'rb')
+        #     # file = torch.load(matrix_path, map_location=torch.device('cpu'))
+        #     matrix = CPU_Unpickler(f).load()
+        #
+        #     return np.array(matrix)
+        # else:
+        #     f = open(matrix_path, 'rb')
+        #     file = pickle.load(f)
+        #     matrix = np.array(file, dtype=np.int64)
+        #     return matrix
+    else:
+        return -1
 
 
 def get_label(args):
-    ally_path = './dataset/Cora/Citation/Cora/raw/ind.cora.ally'
-    ty_path = './dataset/Cora/Citation/Cora/raw/ind.cora.ty'
-    idx_path = './dataset/Cora/Citation/Cora/raw/ind.cora.test.index'
+    lowerCase = 'cora' if args.dataset == 'Cora' else 'citeseer'
+    ally_path = './dataset/{}/Citation/{}/raw/ind.{}.ally'.format(args.dataset, args.dataset, lowerCase)
+    ty_path = './dataset/{}/Citation/{}/raw/ind.{}.ty'.format(args.dataset, args.dataset, lowerCase)
+    idx_path = './dataset/{}/Citation/{}/raw/ind.{}.test.index'.format(args.dataset, args.dataset, lowerCase)
     if args.dataset == 'Cora':
         node_n = 2708
+    elif args.dataset == 'CiteSeer':
+        node_n = 3327
     fy = open(ally_path, 'rb')
     ally = np.array(pickle.load(fy))
 
@@ -37,7 +77,7 @@ def get_label(args):
     ty = np.array(pickle.load(fty))
 
     idx = np.loadtxt(idx_path)
-    idx = np.array(idx, dtype=np.int)
+    idx = np.array(idx, dtype=np.int64)
     # print(idx.max())
 
     label = np.zeros([node_n]) - 1
@@ -119,19 +159,20 @@ def adjusted_homophily(matrix, label):
     e = label.shape[0]
     c = label.max()
     temp = 0
-    for k in range(c+1):
+    for k in range(c + 1):
         temp += pow(D_k(matrix, label, k) / (2 * e), 2)
     ah = (eh - temp) / (1 - temp)
     return ah
 
+
 def balanced_homophily(matrix, label):
     c = label.max()
     h_ball = 0
-    for k in range(c+1):
-        dk = D_k(matrix,label,k)
+    for k in range(c + 1):
+        dk = D_k(matrix, label, k)
         temp = 0
         for i in range(label.shape[0]):
-            if label[i] == k :
+            if label[i] == k:
                 for j in range(matrix[i].shape[0]):
                     if j <= i:
                         continue
@@ -139,25 +180,28 @@ def balanced_homophily(matrix, label):
                         temp += 1
         h_ball += (temp / dk)
     h_ball /= c
-    bh = (h_ball - 1/c) * c / (c-1)
+    bh = (h_ball - 1 / c) * c / (c - 1)
     return bh
-
 
 
 if __name__ == '__main__':
     args = arg_parse()
     matrix = get_matrix(args)
     label = get_label(args)
-    if args.metric == 'edge_homophily':
-        metric_result = edge_homophily(matrix, label)
-    elif args.metric == 'node_homophily':
-        metric_result = node_homophily(matrix, label)
-    elif args.metric == 'class_homophily':
-        metric_result = class_homophily(matrix, label)
-    elif args.metric == 'adjusted_homophily':
-        metric_result = adjusted_homophily(matrix, label)
-    elif args.metric == 'balanced_homophily':
-        metric_result = balanced_homophily(matrix, label)
 
-    print("dataset={}, attack={}, budget={}%,metric={}, result= {}".format(args.dataset, args.attack, args.budget,
-                                                                           args.metric, metric_result))
+    if type(matrix) != type(-1):
+        if args.metric == 'edge_homophily':
+            metric_result = edge_homophily(matrix, label)
+        elif args.metric == 'node_homophily':
+            metric_result = node_homophily(matrix, label)
+        elif args.metric == 'class_homophily':
+            metric_result = class_homophily(matrix, label)
+        elif args.metric == 'adjusted_homophily':
+            metric_result = adjusted_homophily(matrix, label)
+        elif args.metric == 'balanced_homophily':
+            metric_result = balanced_homophily(matrix, label)
+        print(metric_result)
+        # print("dataset={}, attack={}, budget={}%,metric={}, result= {}".format(args.dataset, args.attack, args.budget,
+        #                                                                        args.metric, metric_result))
+    else:
+        print(" ")
