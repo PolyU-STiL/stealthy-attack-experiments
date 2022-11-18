@@ -52,7 +52,7 @@ CiteSeer
 | **MinMax** | 0.7080 | 0.7036 | 0.6990 | 0.5954 | 0.4654 | 0.3810 |
 | **NodeEmbeddingAttack** | 0.7080 | 0.6998 | 0.7020 | 0.6946 | 0.6922 | 0.6950 |
 | **GR-BCD** | 0.7080 |  |  |  |  |
-| **CLGA** | 0.7080 | 0.6230 | 0.5890 | 0.5630 | 0.5420 | 0.4760 |
+| **CLGA** | 0.7080 | 0.7048 | 0.7042 | 0.6968 | 0.6948 | 0.6874 |
 
 ## Metrics evaluation
 to evaluate edege homophily on Cora attacked by CLGA with budget 1%:
