@@ -75,8 +75,13 @@ cd src
 python emb_metric.py --dataset Cora --metric prox1
 ```
 Results in result_data2
-for result_data2:
+
+### for result_data2:
+
 prox1,prox2,jsd has shape of (7,5,node_num) and ln has shape of (7,5,node_num,node_num)
+
 7 represents 7 attaks in order: ["CLGA","dice", "metattack", "minmax", "nodeembeddingattack", "pgd", "random"]
+
 5 represents 5 budgets in order: ['1%', '5%','10%','15%','20%']
+
 For example, Cora_prox1[0][0] represents result of GLGA attack with 1% budget to Cora under prox1 metric
