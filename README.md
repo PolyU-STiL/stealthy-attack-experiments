@@ -54,10 +54,34 @@ CiteSeer
 | **GR-BCD** | 0.7080 |  |  |  |  |
 | **CLGA** | 0.7080 | 0.7048 | 0.7042 | 0.6968 | 0.6948 | 0.6874 |
 
-## Metrics evaluation
+## Metrics evaluation 
+###  Metrics evaluation with out embeddings
 to evaluate edege homophily on Cora attacked by CLGA with budget 1%:
 ```bash
 cd src
 python metrics.py ----dataset Cora --attack CLGA --budget 1 --metric edge_homophily
 ```
+to generate all results:
+```bash
+cd src
+bash metric generate.sh
+```
+Results in result_data1
 
+### Metrics generation with embeddings
+to evaluate all data in experiment1 for Cora under metric prox1:
+```bash
+cd src 
+python emb_metric.py --dataset Cora --metric prox1
+```
+Results in result_data2
+
+### for result_data2:
+
+prox1,prox2,jsd has shape of (7,5,node_num) and ln has shape of (7,5,node_num,node_num)
+
+7 represents 7 attaks in order: ["CLGA","dice", "metattack", "minmax", "nodeembeddingattack", "pgd", "random"]
+
+5 represents 5 budgets in order: ['1%', '5%','10%','15%','20%']
+
+For example, Cora_prox1[0][0] represents result of GLGA attack with 1% budget to Cora under prox1 metric
